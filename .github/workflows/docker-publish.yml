@@ -6,7 +6,7 @@ on:
     tags: [ 'v*.*.*' ]
 
 env:
-  REGISTRY: docker.io/library
+  REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
   IMAGE_TAG: 0.0.1
 
@@ -31,7 +31,7 @@ jobs:
       - name: Log into registry ghcr.io
         uses: docker/login-action@v1
         with:
-          registry: ghcr.io
+          registry: ${{ env.REGISTRY }}
           username: palucas
           password: ${{ secrets.GITHUB_TOKEN }}
 
