@@ -31,10 +31,6 @@ jobs:
           username: palucas
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push Docker images
-        id: build-and-push
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          tags: ${{ env.REGISTRY }}/front:latest
+      - name: push
+        run: docker push docker.io/library/nginx-trab:${{ env.IMAGE_TAG }}
       
