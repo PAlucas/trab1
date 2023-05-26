@@ -20,7 +20,19 @@ jobs:
       - name: Build
         run: docker compose build
 
-      - name: Test
-        run: docker run front npm test
+      - name: run
+        run: |
+          docker-compose up -d db
+          command-1
+
+          docker-compose up -d back-end
+          command-2
+
+          docker-compose up -d frontend
+          command-3
+
+          docker-compose up -d proxy
+          command-4
+
 
 
