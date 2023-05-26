@@ -1,1 +1,25 @@
+name: Github CI
+on:
+  # Configura servidor de CI para executar o pipeline de tarefas abaixo (jobs) quando 
+  # um push ou pull request for realizado tendo como alvo a branch main
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  pipeline:
+    runs-on: ubuntu-latest # Os comandos serão executados em um sistema operacional Linux
+
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2 # Faz o checkout do código recebido
+
+      - name: Set up Docker
+        uses: docker/setup-docker@v1
+
+      - name: Build
+        run: docker compose build
 
