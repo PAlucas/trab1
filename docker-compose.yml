@@ -1,0 +1,53 @@
+version: '3.3'
+
+services:
+  frontend:
+    build:
+      context: ./library_front
+      dockerfile: Dockerfile
+    image: front
+    container_name: front
+    ports:
+      - '3000:3000'
+    networks:
+      - trab1
+  proxy:
+    container_name: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: nginx-trab
+    ports:
+      - '4000:80'
+    networks:
+      - trab1
+  db:
+    image: postgres
+    container_name: library_db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: library_db
+    ports:
+      - "5432:5432"
+    networks:
+      - trab1
+  back-end:
+    build: 
+      context: ./library_back
+      dockerfile: Dockerfile
+    image: back
+    container_name: back
+    ports:
+      - "9000:8000"
+    environment:
+      - POSTGRES_DB=library_db
+      - POSTGRES_USER=myuser
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_HOST=172.20.0.2
+      - POSTGRES_PORT=5432
+    networks:
+      - trab1
+networks:
+  trab1:
+    name: trab-1
