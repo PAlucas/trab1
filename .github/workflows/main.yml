@@ -20,3 +20,7 @@ jobs:
       - name: Build
         run: docker compose build
 
+      - name: Test
+        run: docker run -it front npm test
+
+
