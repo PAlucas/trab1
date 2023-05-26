@@ -3,11 +3,8 @@ on:
   # Configura servidor de CI para executar o pipeline de tarefas abaixo (jobs) quando 
   # um push ou pull request for realizado tendo como alvo a branch main
   push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
 
 jobs:
   pipeline:
@@ -23,19 +20,6 @@ jobs:
       - name: Build
         run: docker compose build
 
-      - name: run
-        run: |
-          docker-compose up -d db
-          command-1
-
-          docker-compose up -d back-end
-          command-2
-
-          docker-compose up -d frontend
-          command-3
-
-          docker-compose up -d proxy
-          command-4
 
 
 
