@@ -24,7 +24,7 @@ jobs:
       - name: Obter última versão
         id: get_latest_version
         run: |
-          latest_version=$(git describe --tags --abbrev=0)
+          latest_version=$(curl --silent "https://api.github.com/repos/PAlucas/trab1/releases/latest" | grep -P '"tag_name": "\K.*?(?=")'')
           echo "::set-output name=latest_version::$latest_version"
 
       - name: Exibir última versão
