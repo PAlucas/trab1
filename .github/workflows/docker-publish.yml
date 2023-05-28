@@ -21,29 +21,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Build
-        run: docker compose build
-
-      - name: tag
+      - name: Obter última versão
+        id: get_latest_version
         run: |
-          docker tag nginx-trab ${{ env.REGISTRY }}/palucas/nginx-trab:${{ steps.meta.outputs.tags }} 
-          
-          docker tag front ${{ env.REGISTRY }}/palucas/front:${{ steps.meta.outputs.tags }} 
+          latest_version=$(git describe --tags --abbrev=0)
+          echo "::set-output name=latest_version::$latest_version"
 
-          docker tag back ${{ env.REGISTRY }}/palucas/back:${{ steps.meta.outputs.tags }} 
-
-      - name: Log into registry ghcr.io
-        uses: docker/login-action@v1
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: PAlucas
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: push
+      - name: Exibir última versão
         run: |
-          docker push  ${{ env.REGISTRY }}/palucas/nginx-trab:${{ steps.meta.outputs.tags }} 
-
-          docker push  ${{ env.REGISTRY }}/palucas/front:${{ steps.meta.outputs.tags }} 
-
-          docker push  ${{ env.REGISTRY }}/palucas/back:${{ steps.meta.outputs.tags }} 
+          echo "A última versão do repositório é ${{ steps.get_latest_version.outputs.latest_version }}"
       
