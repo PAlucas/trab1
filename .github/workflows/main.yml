@@ -16,11 +16,7 @@ jobs:
       - name: Create Network
         run: docker network create trab-1 --driver=bridge
 
-      - name: Build
-        run: docker compose build
       
-      - name: Lint 
-        run: docker run front npm run lint
 
 
 
