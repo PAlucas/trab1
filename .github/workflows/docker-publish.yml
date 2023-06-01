@@ -31,7 +31,7 @@ jobs:
 
       - name: Exibir última versão
         run: |
-          echo "A última versão do repositório é ${{ steps.get_latest_version.outputs.latest_version["tag_name"] }}"
+          echo "A última versão do repositório é ${{ steps.get_latest_version.outputs.latest_version }}"
 
       # - name: tag
       #   run: |
