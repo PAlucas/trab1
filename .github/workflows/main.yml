@@ -16,6 +16,26 @@ jobs:
       - name: Create Network
         run: docker network create trab-1 --driver=bridge
 
+      - name: Build
+        run: docker compose build
+      
+      - name: run 
+        run: |
+          docker-compose up -d db
+
+          docker-compose up -d back-end
+
+          docker exec back python manage.py makemigrations
+          
+          docker exec back python manage.py migrate
+
+          docker-compose up -d frontend
+
+          docker-compose up -d proxy
+        
+      - name: test
+        run: docker exec back python manage.py test
+
       
 
 
