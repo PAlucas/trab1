@@ -44,7 +44,7 @@ services:
       - POSTGRES_DB=library_db
       - POSTGRES_USER=myuser
       - POSTGRES_PASSWORD=mypassword
-      - POSTGRES_HOST=172.20.0.2
+      - POSTGRES_HOST=library_db
       - POSTGRES_PORT=5432
     networks:
       - trab1
