@@ -41,7 +41,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           username: lucaslotti
-          password: ${{ env.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: push
         run: |
