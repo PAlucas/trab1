@@ -13,6 +13,7 @@ class Config {
 def repoUrl = 'https://github.com/PAlucas/trab1.git'
 def gettags (){
     def result = sh("git ls-remote --tags https://github.com/PAlucas/trab1.git").execute()
+    return result
 }
 
 def select(gerar_artefato, artefato, branch, url, selected) {
@@ -61,7 +62,7 @@ pipeline {
                 echo "DOCKER_HOST = ${DOCKER_HOST}"
                 '''
 
-                echo "VERSÃO: ${env.BUILD_TIMESTAMP_VERSAO}#${env.BUILD_NUMBER}"
+                echo gettags()
 
                 script {
                     try {
