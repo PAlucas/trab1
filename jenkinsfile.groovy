@@ -72,11 +72,11 @@ pipeline {
                         def frontEndChoice = params['front-end']
                         def backEndChoice = params['back-end']
                         
-                        if (frontEndChoice) {
+                        if (params.gerar_front) {
                             echo "Front-end escolhido: ${frontEndChoice}"
                         }
                         
-                        if (backEndChoice) {
+                        if (params.gerar_back) {
                             echo "Back-end escolhido: ${backEndChoice}"
                         }
                         // Parse tags from the output
