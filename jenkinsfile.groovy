@@ -70,6 +70,7 @@ pipeline {
 
                         def tags = []
                         // Parse tags from the output
+                        println tagsOutput
                         tagsOutput.eachLine { line ->
                             def parts = line.split('\t')
                             def ref = parts[1].trim()
