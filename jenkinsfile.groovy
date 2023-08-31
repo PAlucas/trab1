@@ -12,6 +12,11 @@ class Config {
 
 def gitTags = ("git tag").execute()
 
+def tags = gitTags.text.readLines()
+        .collect { it.split()  }
+        .unique()
+        .findAll { it =~ /\d+\.\d+\.\d+/ }
+
 
 
 
@@ -46,8 +51,10 @@ pipeline {
     }
     parameters {
         booleanParam(name: 'deploy', defaultValue: true, description: 'Realizar o deploy no ambiente de qualidade')
-        choice(name: 'versao', choices: ['rep = lucas.perlatto/mini-api.git', 'ola'], description: '')
-        booleanParam(name: 'gerar_mini_api', defaultValue: false, description: '')
+        choice(name: 'front-end', choices: ['versoes'], description: '')
+        booleanParam(name: 'gerar_front', defaultValue: false, description: '')
+        choice(name: 'back-end', choices: ['versoes'], description: '')
+        booleanParam(name: 'gerar_back', defaultValue: false, description: '')
     }
     options {
         timestamps()
@@ -65,16 +72,13 @@ pipeline {
                 
 
 
-                echo "${tagsJson}"
+                echo "${tags}"
 
                 script {
                     try {
                         def artefato = "vendaweb-react"
                         
-                        def tags = gitTags.text.readLines()
-                                .collect { it.split()  }
-                                .unique()
-                                .findAll { it =~ /\d+\.\d+\.\d+/ }
+
                     } catch (err) {
                         echo err.getMessage()
                     }
