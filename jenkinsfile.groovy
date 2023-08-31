@@ -69,7 +69,19 @@ pipeline {
                         def tagsOutput = sh(script: "git ls-remote --tags ${repoUrl}", returnStdout: true).trim()
 
                         def tags = []
-
+                        // Parse tags from the output
+                        tagsOutput.eachLine { line ->
+                            def parts = line.split('\t')
+                            def ref = parts[1].trim()
+                            if (ref.startsWith("refs/tags/")) {
+                                tags << ref.substring("refs/tags/".length())
+                            }
+                        }
+                        
+                        // Print the tags
+                        tags.each { tag ->
+                            println tag
+                        }
                     } catch (err) {
                         echo err.getMessage()
                     }
