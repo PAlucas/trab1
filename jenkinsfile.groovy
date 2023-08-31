@@ -2,19 +2,6 @@ import org.eclipse.jgit.api.Git
 import org.eclipse.jgit.api.ListTagCommand
 import org.eclipse.jgit.lib.Ref
 import groovy.json.JsonSlurperClassic
-import groovyx.net.http.HTTPBuilder
-import static groovyx.net.http.Method.GET
-
-def DOCKERCLI_DIR = "/var/jenkins_home/docker-cli"
-def TLS_DIR = "/var/jenkins_home/docker-api-tls/rj_consultores_novo_qa_api"
-def HOST_API = "54.81.96.197"
-def REGISTRY_URL = "18.235.188.113:5113"
-def REGISTRY_USER = "experimental"
-def REGISTRY_PASS = "rjmaster09"
-def DOCKER_URL = "10.0.1.38:5113"
-def DOCKER_USER = "experimental"
-def DOCKER_PASS = "rjmaster09"
-def URL_GIT = "https://gitrj.rjconsultores.com.br"
 
 class Config {
     def artefato
@@ -22,8 +9,6 @@ class Config {
     def branch
     def url
 }
-
-def tagsJson = new HTTPBuilder('http://api.exemplo.com')
 
 
 def select(gerar_artefato, artefato, branch, url, selected) {
