@@ -10,6 +10,10 @@ class Config {
     def url
 }
 
+def repoUrl = 'https://github.com/PAlucas/trab1.git'
+def tagsOutput = sh(script: "git ls-remote --tags ${repoUrl}", returnStdout: true).trim()
+
+def tags = []
 
 
 def select(gerar_artefato, artefato, branch, url, selected) {
