@@ -69,10 +69,6 @@ pipeline {
             steps {
                 script {
                     try {
-                        def artefato = "vendaweb-react"
-                        def tagsOutput = sh("git ls-remote --tags https://github.com/PAlucas/trab1.git").execute()
-
-                        def tags = []
                         // Parse tags from the output
                         println params.gerar_front
                     } catch (err) {
