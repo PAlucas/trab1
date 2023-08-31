@@ -12,7 +12,7 @@ class Config {
 
 def repoUrl = 'https://github.com/PAlucas/trab1.git'
 def gettags (){
-    def result = sh("git ls-remote --tags https://github.com/PAlucas/trab1.git").execute()
+    def result = sh("git ls-remote --tags https://github.com/PAlucas/trab1.git")
     return result
 }
 
