@@ -10,6 +10,11 @@ class Config {
     def url
 }
 
+def gitTags = ("git tag").execute()
+
+
+
+
 
 def select(gerar_artefato, artefato, branch, url, selected) {
     if (gerar_artefato) {
@@ -66,22 +71,10 @@ pipeline {
                     try {
                         def artefato = "vendaweb-react"
                         
-                        select(params.gerar_vendaweb, artefato, params.versao, "https://gitrj.rjconsultores.com.br/lucas.perlatto/mini-api.git", jsonParse(selected))
-
-                        http.request(Method.GET, groovyx.net.http.ContentType.JSON) { req ->
-                            response.success = { resp, json ->
-                                // Processar a resposta JSON
-                                println(json)
-                            }
-
-                            response.failure = { resp, json ->
-                                println("Erro na requisição: ${resp.statusLine}")
-                            }
-                        }
-
-                        jsonParse(selected).each {
-                            println "=> " + it.artefato + " - " + it.url + " [" + it.branch + "]"
-                        }
+                        def tags = gitTags.text.readLines()
+                                .collect { it.split()  }
+                                .unique()
+                                .findAll { it =~ /\d+\.\d+\.\d+/ }
                     } catch (err) {
                         echo err.getMessage()
                     }
