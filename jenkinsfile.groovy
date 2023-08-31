@@ -11,9 +11,6 @@ class Config {
 }
 
 
-def gitTags = ("git tag").execute()
-
-
 
 def select(gerar_artefato, artefato, branch, url, selected) {
     if (gerar_artefato) {
