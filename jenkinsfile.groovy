@@ -11,9 +11,7 @@ class Config {
 }
 
 def repoUrl = 'https://github.com/PAlucas/trab1.git'
-def tagsOutput = sh(script: "git ls-remote --tags ${repoUrl}", returnStdout: true).trim()
 
-def tags = []
 
 
 def select(gerar_artefato, artefato, branch, url, selected) {
@@ -68,7 +66,9 @@ pipeline {
                 script {
                     try {
                         def artefato = "vendaweb-react"
-                        
+                        def tagsOutput = sh(script: "git ls-remote --tags ${repoUrl}", returnStdout: true).trim()
+
+                        def tags = []
 
                     } catch (err) {
                         echo err.getMessage()
