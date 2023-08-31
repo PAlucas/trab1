@@ -67,13 +67,6 @@ pipeline {
     stages {
         stage('Info') {
             steps {
-                sh '''
-                echo "PATH = ${PATH}"
-                echo "DOCKER_HOST = ${DOCKER_HOST}"
-                '''
-
-                echo gettags()
-
                 script {
                     try {
                         def artefato = "vendaweb-react"
@@ -81,7 +74,7 @@ pipeline {
 
                         def tags = []
                         // Parse tags from the output
-                        println tagsOutput
+                        println params.gerar_front
                     } catch (err) {
                         echo err.getMessage()
                     }
