@@ -11,11 +11,20 @@ class Config {
 }
 
 def repoUrl = 'https://github.com/PAlucas/trab1.git'
+
 def gettags (){
     def result = ("git ls-remote --tags https://github.com/PAlucas/trab1.git").execute().getText().replaceAll('refs/tags/', '')
     def list = result.split()
-    return list
+    def novolist = []
+    list.each{value ->
+        def primeiraLetra = value.split('');
+        if(primeiraLetra[0] == 'v'){
+            novolist << value
+        }
+    }
+    return novolist
 }
+
 
 def select(gerar_artefato, artefato, branch, url, selected) {
     if (gerar_artefato) {
@@ -47,9 +56,9 @@ pipeline {
     }
     parameters {
         booleanParam(name: 'deploy', defaultValue: true, description: 'Realizar o deploy no ambiente de qualidade')
-        choice(name: 'front-end', choices: ['versoes'], description: '')
+        choice(name: 'front-end', choices: gettags (), description: '')
         booleanParam(name: 'gerar_front', defaultValue: false, description: '')
-        choice(name: 'back-end', choices: ['versoes'], description: '')
+        choice(name: 'back-end', choices: gettags (), description: '')
         booleanParam(name: 'gerar_back', defaultValue: false, description: '')
     }
     options {
