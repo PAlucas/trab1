@@ -87,5 +87,17 @@ pipeline {
                 }
             }
         }
+        stage('Build') {
+            steps {
+                script {
+                    try {
+                        sh("docker ps")
+                        
+                    } catch (err) {
+                        echo err.getMessage()
+                    }
+                }
+            }
+        }
     }
 }
