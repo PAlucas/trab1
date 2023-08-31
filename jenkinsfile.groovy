@@ -11,7 +11,7 @@ class Config {
 }
 
 
-
+def gitTags = ("git tag").execute()
 
 
 
