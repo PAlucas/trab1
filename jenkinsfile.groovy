@@ -11,7 +11,9 @@ class Config {
 }
 
 def repoUrl = 'https://github.com/PAlucas/trab1.git'
-
+def gettags (repNome){
+    def result = sh("git ls-remote --tags ${repNome}").execute()
+}
 
 def select(gerar_artefato, artefato, branch, url, selected) {
     if (gerar_artefato) {
