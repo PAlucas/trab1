@@ -69,6 +69,16 @@ pipeline {
             steps {
                 script {
                     try {
+                        def frontEndChoice = params['front-end']
+                        def backEndChoice = params['back-end']
+                        
+                        if (frontEndChoice) {
+                            echo "Front-end escolhido: ${frontEndChoice}"
+                        }
+                        
+                        if (backEndChoice) {
+                            echo "Back-end escolhido: ${backEndChoice}"
+                        }
                         // Parse tags from the output
                         println params.gerar_front
                     } catch (err) {
