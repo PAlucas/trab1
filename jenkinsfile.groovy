@@ -10,12 +10,6 @@ class Config {
     def url
 }
 
-def gitTags = ("git tag").execute()
-
-def tags = gitTags.text.readLines()
-        .collect { it.split()  }
-        .unique()
-        .findAll { it =~ /\d+\.\d+\.\d+/ }
 
 
 
