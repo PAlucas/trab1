@@ -14,7 +14,7 @@ def repoUrl = 'https://github.com/PAlucas/trab1.git'
 def gettags (){
     def result = ("git ls-remote --tags https://github.com/PAlucas/trab1.git").execute().getText().replaceAll('refs/tags/', '')
     def list = result.split()
-    return result
+    return list
 }
 
 def select(gerar_artefato, artefato, branch, url, selected) {
