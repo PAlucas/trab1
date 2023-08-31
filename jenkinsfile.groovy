@@ -63,9 +63,6 @@ pipeline {
 
                 echo "VERSÃO: ${env.BUILD_TIMESTAMP_VERSAO}#${env.BUILD_NUMBER}"
 
-                echo gettags(repoUrl)
-
-
                 script {
                     try {
                         def artefato = "vendaweb-react"
