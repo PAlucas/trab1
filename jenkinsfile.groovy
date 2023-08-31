@@ -13,10 +13,6 @@ class Config {
 def repoUrl = 'https://github.com/PAlucas/trab1.git'
 def gettags = ("git ls-remote --tags ${repoUrl}").execute()
 
-List list = gettags.text.readLines().collect { 
-    it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')
-}
-
 
 def select(gerar_artefato, artefato, branch, url, selected) {
     if (gerar_artefato) {
