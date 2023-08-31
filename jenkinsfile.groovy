@@ -17,29 +17,6 @@ List list = gettags.text.readLines().collect {
     it.split()[1].replaceAll('refs/heads/', '').replaceAll('refs/tags/', '')
 }
 
-list.sort { x, y -> 
-    def x1 = x.tokenize(".")[0]
-    def x2 = x.tokenize(".")[1]
-    def x3 = x.tokenize(".")[2]
-
-    if (x3.contains("-")) {
-        x3 = x3.tokenize("-")[0]
-    }
-
-    def y1 = y.tokenize(".")[0]
-    def y2 = y.tokenize(".")[1]
-    def y3 = y.tokenize(".")[2]
-
-    if (y3.contains("-")) {
-        y3 = y3.tokenize("-")[0]
-    }
-
-    def x0 = "9" + String.format("%05d", Integer.parseInt(x1.toString())) + String.format("%05d", Integer.parseInt(x2.toString())) + String.format("%05d", Integer.parseInt(x3.toString()))
-    def y0 = "9" + String.format("%05d", Integer.parseInt(y1.toString())) + String.format("%05d", Integer.parseInt(y2.toString())) + String.format("%05d", Integer.parseInt(y3.toString()))
-
-    return x0 <=> y0
-}
-
 
 def select(gerar_artefato, artefato, branch, url, selected) {
     if (gerar_artefato) {
