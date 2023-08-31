@@ -63,10 +63,6 @@ pipeline {
 
                 echo "VERSÃO: ${env.BUILD_TIMESTAMP_VERSAO}#${env.BUILD_NUMBER}"
 
-                
-
-
-                echo "${tags}"
 
                 script {
                     try {
